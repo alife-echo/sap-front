@@ -4,7 +4,6 @@ import Footer from '../components/Footer';
 import axios from 'axios';
 import { Request } from '../helpers/Request';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import ButtonLoadingPosition from '../components/LoadingButton';
 import BasicModal from '../components/BasicModal';
 function Register() {
   const [name, setName] = useState('');
@@ -16,7 +15,7 @@ function Register() {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
-
+    setLoading(true)
     e.preventDefault();
     const data = {
       email: email,
@@ -29,13 +28,13 @@ function Register() {
       .then((response) => {
       if (response.id && response.token) {
         console.log('RESPOSTA',response)
-        setLoading(true)
         navigate('/confirm-email');
       }
       })
       .catch((error) => {
         console.log('ERROR---->',error)
         setMessage(error.response.data.error ? error.response.data.error : '')
+        setLoading(false)
         setModalOpen(true)
       });
   }
@@ -44,8 +43,9 @@ function Register() {
     <>
       <main className="flex full-size">
         <section className="form-container flex">
-        <form onSubmit={handleSubmit} className="register-retrieve" method="post" action='register-post'>            
+        {loading ?   <div className='spinner'></div> :  <form onSubmit={handleSubmit} className="register-retrieve" method="post" action='register-post'>            
             <h1 className="center-text title-form">REGISTRAR</h1>
+          
             <label htmlFor="name" className="sty-label">Nome completo *</label>
             <input
               type="text"
@@ -73,14 +73,15 @@ function Register() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Ex: #@d291312"
             />
-             {loading ? <ButtonLoadingPosition/> :   <input type="submit" className="sb-style" value="Enviar" />}
+            <input type="submit" className="sb-style" value="Enviar" />
              <BasicModal
               title="Aviso"
               body={`${message.charAt(0).toUpperCase() + message.slice(1)}`}
               open={modalOpen}
               handleClose={handleCloseModal}
                  />
-          </form>
+          </form> }
+      
         </section>
       </main>
       <Footer />

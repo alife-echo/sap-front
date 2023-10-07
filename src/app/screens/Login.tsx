@@ -5,7 +5,6 @@ import '../globals.css';
 import { Request } from '../helpers/Request';
 import Footer from '../components/Footer';
 import BasicModal from '../components/BasicModal';
-import ButtonLoadingPosition from '../components/LoadingButton';
 
 
 function LoginPage() {
@@ -64,7 +63,7 @@ function LoginPage() {
             <Link to='/retrieve-account' className="link">
               Esqueceu senha ?
             </Link>      
-            {loading ? <ButtonLoadingPosition/> :  <input type="submit" id='bt-test' className="sb-style" value="Entrar"/>}
+             <input type="submit" id='bt-test' className="sb-style" value="Entrar"/>
             
             <Link to="/register" className="link center-text"> 
               Não tem conta?
