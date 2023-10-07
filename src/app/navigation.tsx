@@ -6,6 +6,8 @@ import Register from './screens/Register';
 import RetrieveAccount from './screens/RetrieveAccount';
 import Home from './screens/Home';
 import ConfirmCodeEmail from './screens/ConfirmCodeEmail';
+import SuccessfulCreateAccount from './screens/SuccessfulCreateAccount';
+import NotAuthorized from './screens/NotAuthorized';
 function Navigation() {
   return (
     <Router>
@@ -13,6 +15,8 @@ function Navigation() {
         <Route path="/"  element={<LoginPage/>} />
         <Route path="/register" element={<Register/>} />
         <Route path='/confirm-email' element={<ConfirmCodeEmail/>}/>
+        <Route path='/success-create' element={<SuccessfulCreateAccount/>}/>
+        <Route path='not-authorized' element={<NotAuthorized/>}/>
         <Route path="/retrieve-account" element={<RetrieveAccount/>}/>
         <Route path="/home" element={<Home/>}/>
       </Routes>

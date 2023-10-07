@@ -18,15 +18,19 @@ export default function Home () {
     const navigate:NavigateFunction = useNavigate()
     let token = localStorage.getItem('token')
    
-useEffect(()=>{
-  Request('get', `list-items?token=${token}`,'',token)
-  .then((response) => {
-    setResponse(response)
-  })
-  .catch((error) => {
-    console.log(error)
-  });
-},[])
+    useEffect(() => {
+      if (token) {
+        Request('get', `list-items?token=${token}`, '', token)
+          .then((response) => {
+            setResponse(response)
+          })
+          .catch((error) => {
+            console.log(error)
+          });
+      } else {
+        navigate('/not-authorized')
+      }
+    }, [token, navigate])
      return (
         <>
            

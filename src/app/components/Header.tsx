@@ -26,24 +26,23 @@ function Header() {
         </div>
         <div className="imgs-link">
           <figure>
-            <div className='st-blue'>
+            
               <FaHome size={25} />
-            </div>
+            
           </figure>
           <figure>
-          <div className='st-blue'>
+          
               <FaLayerGroup size={25} />
-          </div>
           </figure>
           <figure>
-            <div className='st-blue'>
+
               <FaCloudUploadAlt size={25} />
-            </div>
+            
           </figure>
           <figure>
-            <div className='st-blue'>
+            
               <FaEnvelope size={25} />
-            </div>
+            
           </figure>
           <figure>
             <form action="/logout" method="post">
