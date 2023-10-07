@@ -24,7 +24,7 @@ function Register() {
     };
 
 
-   Request(data, 'post','register-post')
+   Request('post','register-post',data)
       .then((response) => {
       if (response.id && response.token) {
         console.log('RESPOSTA',response)

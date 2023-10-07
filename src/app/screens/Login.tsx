@@ -23,9 +23,10 @@ function LoginPage() {
       password: password,
     };
 
-    Request(data, 'post', 'post-login')
+    Request( 'post', 'post-login',data)
       .then((response) => {
         if (response.status && response.token) {
+          localStorage.setItem('token', response.token)
           navigate('/home');
           setLoading(true)
         }
