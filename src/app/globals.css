@@ -157,14 +157,14 @@ body{
  }
  
  .spinner::before {
-    --c: radial-gradient(farthest-side,#4863f7 92%,#0000);
+    --c: radial-gradient(farthest-side,#111111 92%,#0000);
     margin: 5.8px;
     background-size: 11.5px 11.5px;
     animation-timing-function: linear;
  }
  
  .spinner::after {
-    --c: radial-gradient(farthest-side,#4863f7 92%,#0000);
+    --c: radial-gradient(farthest-side,#111111 92%,#0000);
  }
  
  @keyframes spinner-3hs4a3 {

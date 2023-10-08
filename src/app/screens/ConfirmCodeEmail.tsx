@@ -1,16 +1,56 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import '../globals.css';
 import Footer from "../components/Footer";
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { Request } from "../helpers/Request";
 import axios from "axios";
+import BasicModal from "../components/BasicModal";
 const ConfirmCodeEmail = () => {
+
+  const [code,setCode] = useState('');
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const navigate:NavigateFunction = useNavigate()
+  const [message,setMessage] = useState<string>('')
+  const [response,setResponse] = useState()
+  const [loading,setLoading] = useState<boolean>(false)
+  let token = localStorage.getItem('token')
+
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    setLoading(true)
+    e.preventDefault()
+    const data = {
+      code:code
+    };
+    Request('post','confirm-email-post',data,'')
+    .then((response) => {
+      setResponse(response)
+      navigate('/success-create')
+    })
+    .catch((error) => {
+      setMessage(error.response.data.error);
+      setLoading(false)
+      setModalOpen(true);
+    });
+    
+  }
+  useEffect(() => {
+    if (token && message !== 'Não autorizado' ) {
+       console.log('ok')
+    } else {
+      navigate('/not-authorized')
+    }
+  }, [token, navigate])
+  const handleCloseModal = () => {setModalOpen(false)} 
     return (
         <>
         <main className="flex full-size">
         <section className="form-container flex">
-          <form
+          {loading ? <div className='spinner'></div> : 
+            <form
             action="confirm-email-post"
             className="register-retrieve"
             method="post"
+            onSubmit={handleSubmit}
           >
             <h1 className="dra center-text title-form">
               CONFIRMAR EMAIL
@@ -23,15 +63,25 @@ const ConfirmCodeEmail = () => {
             <input
               type="text"
               className="styles-input size-inputs"
-              name="email_confirm"
+              name="code"
               placeholder="24432"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
             />
             <input
               type="submit"
               className="sb-style"
               value="Enviar"
             />
-          </form>
+             <BasicModal
+              title="Aviso"
+              body={`${message.charAt(0).toUpperCase() + message.slice(1)}`}
+              open={modalOpen}
+              handleClose={handleCloseModal}
+                 />
+          </form>          
+          }
+          
         </section>
       </main>
       <Footer/>

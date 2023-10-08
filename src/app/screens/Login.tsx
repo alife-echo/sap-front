@@ -17,6 +17,7 @@ function LoginPage() {
 
 
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    setLoading(true)
     e.preventDefault();
     const data = {
       email: email,
@@ -28,11 +29,11 @@ function LoginPage() {
         if (response.status && response.token) {
           localStorage.setItem('token', response.token)
           navigate('/home');
-          setLoading(true)
         }
       })
       .catch((error) => {
         setMessage(error.response.data.error);
+        setLoading(false)
         setModalOpen(true);
       });
   }
@@ -41,7 +42,8 @@ function LoginPage() {
     <>
       <main className="flex full-size">
         <section className="form-container flex">
-          <form action="/post-login" method='post' onSubmit={handleSubmit}>
+          {loading ? <div className='spinner'></div> : 
+            <form action="/post-login" method='post' onSubmit={handleSubmit}>
             <h1 className="center-text title-form">ENTRAR</h1>
             <label htmlFor="login" className="sty-label">
               Email:
@@ -69,7 +71,9 @@ function LoginPage() {
             <Link to="/register" className="link center-text"> 
               Não tem conta?
             </Link>
-          </form>
+          </form>          
+          }
+          
         </section>
       </main>
       <Footer />

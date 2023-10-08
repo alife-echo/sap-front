@@ -9,19 +9,19 @@ const NotAuthorized = () => {
 const navigate:NavigateFunction = useNavigate()
 
   return (
-    <body className="flex full-size">
+    <>
       <main className="flex full-size">
-        <section className="form-container flex">
+        <section className="form-container flex"> 
           <form action="confirm-email-post" className="register-retrieve flex" method="post">
             <h1 className="dra center-text title-form">ACESSO NÃO AUTORIZADO</h1>
-            <Link to="/" className="sb-style" > 
+            <Link to="/" className="sb-style center-text flex" > 
                     Ir para página inicial
             </Link>
           </form>
         </section>
       </main>
       <Footer/>
-    </body>
+      </>
   );
 }
 

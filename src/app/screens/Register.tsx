@@ -6,9 +6,9 @@ import { Request } from '../helpers/Request';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import BasicModal from '../components/BasicModal';
 function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const navigate:NavigateFunction = useNavigate()
   const [message,setMessage] = useState<string>('')
   const [loading,setLoading] = useState<boolean>(false)
@@ -28,6 +28,7 @@ function Register() {
       .then((response) => {
       if (response.id && response.token) {
         console.log('RESPOSTA',response)
+        localStorage.setItem('token', response.token)
         navigate('/confirm-email');
       }
       })
