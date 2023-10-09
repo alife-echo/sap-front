@@ -3,6 +3,7 @@ import '../globals.css';
 import Footer from "../components/Footer";
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Request } from "../helpers/Request";
+import { useJwt } from "react-jwt";
 import axios from "axios";
 import BasicModal from "../components/BasicModal";
 const ConfirmCodeEmail = () => {
@@ -14,6 +15,7 @@ const ConfirmCodeEmail = () => {
   const [response,setResponse] = useState()
   const [loading,setLoading] = useState<boolean>(false)
   let token = localStorage.getItem('token')
+  const { decodedToken, isExpired } = useJwt(token as string);
 
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     setLoading(true)
@@ -21,7 +23,7 @@ const ConfirmCodeEmail = () => {
     const data = {
       code:code
     };
-    Request('post','confirm-email-post',data,'')
+    Request('post','confirm-email-post',data)
     .then((response) => {
       setResponse(response)
       navigate('/success-create')
@@ -34,11 +36,10 @@ const ConfirmCodeEmail = () => {
     
   }
   useEffect(() => {
-    if (token && message !== 'Não autorizado' ) {
-       console.log('ok')
-    } else {
-      navigate('/not-authorized')
-    }
+    console.log(isExpired)
+    if (isExpired) {
+       navigate('/not-authorized')
+  } 
   }, [token, navigate])
   const handleCloseModal = () => {setModalOpen(false)} 
     return (
