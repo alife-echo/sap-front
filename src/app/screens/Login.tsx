@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { Link, Navigate, NavigateFunction, NavigateProps, To } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import '../globals.css';
@@ -14,7 +14,7 @@ function LoginPage() {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [loading,setLoading] = useState<boolean>(false)
   const navigate:NavigateFunction = useNavigate()
-
+  let token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
 
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     setLoading(true)
@@ -28,6 +28,7 @@ function LoginPage() {
       .then((response) => {
         if (response.status && response.token) {
           localStorage.setItem('token', response.token)
+          localStorage.setItem('id',response.id)
           navigate('/home');
         }
       })
@@ -37,6 +38,22 @@ function LoginPage() {
         setModalOpen(true);
       });
   }
+  useEffect(()=> {
+    if(token){
+      Request('get','validated-token','',token).then(response=>{
+        if(response.status){
+           console.log(response.status)
+        }
+      }).catch(error => {
+         if(error.response.data.error === 'Não autorizado'){
+            localStorage.removeItem('token')
+            localStorage.removeItem('id')
+         }
+         else{
+          console.log(error)
+         }
+      })
+    }},[])
   const handleCloseModal = () => setModalOpen(false);
   return (
     <>

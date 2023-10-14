@@ -14,8 +14,7 @@ function ValidatedRetrieve() {
   const [message,setMessage] = useState<string>('')
   const [loading,setLoading] = useState<boolean>(false)
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  let token = localStorage.getItem('token')
-  const { decodedToken, isExpired } = useJwt(token as string);
+  let token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
 
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     setLoading(true)
@@ -41,8 +40,7 @@ function ValidatedRetrieve() {
       });
   }
   useEffect(() => {
-    console.log(isExpired)
-    if (isExpired) {
+    if (!token) {
        navigate('/not-authorized')
   } 
   }, [token, navigate])
@@ -52,7 +50,7 @@ function ValidatedRetrieve() {
       <main className="flex full-size">
         <section className="form-container flex">
         {loading ?   <div className='spinner'></div> :  <form onSubmit={handleSubmit} className="register-retrieve" method="post" action='register-post'>            
-            <h1 className="center-text title-form">REDEFINIR SENHA</h1>
+            <h1 className="mn center-text title-form">REDEFINIR SENHA</h1>
           
             <label htmlFor="name" className="sty-label">Código *</label>
             <input
@@ -61,7 +59,7 @@ function ValidatedRetrieve() {
               name="token"
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              placeholder="Ex: Álife Silva De Moraes"
+              placeholder="Ex:adw12312"
             />
             <label htmlFor="password" className="sty-label">Nova Senha *</label>
             <input

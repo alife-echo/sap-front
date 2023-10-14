@@ -10,6 +10,7 @@ import SuccessfulCreateAccount from './screens/SuccessfulCreateAccount';
 import NotAuthorized from './screens/NotAuthorized';
 import ValidatedRetrieve from './screens/ValidatedRetrieve';
 import SuccessRetrieveAccount from './screens/SuccessRetrieveAccount';
+import Upload from './screens/Upload';
 function Navigation() {
   return (
     <Router>
@@ -23,6 +24,7 @@ function Navigation() {
         <Route path='/validated-retrieve' element={<ValidatedRetrieve/>}/>
         <Route path='/success-retrieve' element={<SuccessRetrieveAccount/>}/>
         <Route path="/home" element={<Home/>}/>
+        <Route path="/upload" element={<Upload/>}/>
       </Routes>
     </Router>
   );

@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import {ModalProps} from '../../types/ModalProps'
+
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',

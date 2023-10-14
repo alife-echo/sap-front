@@ -3,7 +3,10 @@ import '../globals.css';
 import Footer from "../components/Footer";
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Request } from "../helpers/Request";
+import JWT from 'jsonwebtoken';
 import { useJwt } from "react-jwt";
+import dotenv from 'dotenv'
+dotenv.config()
 import axios from "axios";
 import BasicModal from "../components/BasicModal";
 const ConfirmCodeEmail = () => {
@@ -14,8 +17,7 @@ const ConfirmCodeEmail = () => {
   const [message,setMessage] = useState<string>('')
   const [response,setResponse] = useState()
   const [loading,setLoading] = useState<boolean>(false)
-  let token = localStorage.getItem('token')
-  const { decodedToken, isExpired } = useJwt(token as string);
+  let token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
 
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     setLoading(true)
@@ -36,9 +38,9 @@ const ConfirmCodeEmail = () => {
     
   }
   useEffect(() => {
-    console.log(isExpired)
-    if (isExpired) {
+    if (!token) {
        navigate('/not-authorized')
+
   } 
   }, [token, navigate])
   const handleCloseModal = () => {setModalOpen(false)} 

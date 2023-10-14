@@ -179,6 +179,9 @@ footer{
     background-color: var(--backgroundFooter);
     
 }
+.mn{
+    font-size: 3.8rem;
+}
 footer p {
     color: var(--white);    
     font-family: 'Inter';
@@ -186,7 +189,12 @@ footer p {
     font-size: 1.3rem;
     display: inline-block; /* Adicione esta linha */
 }
-
+.centerSpinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 20.3rem);
+  }
 footer p span {
     padding: 0.2rem;
     border-radius: 100%;
@@ -341,6 +349,9 @@ header{
     background-color: var(--white);
     border: transparent;
     
+  }
+  .imgs-link figure form  button{
+    cursor: pointer;
   }
   header nav{
     display: flex;
@@ -808,8 +819,12 @@ header{
         width: 20rem;
         height: 3rem;
     }
+    
     .title-form{
         font-size: 3.8rem;
+    }
+    .mn{
+        font-size: 2.5rem;
     }
     .register-retrieve{
         display: flex;
