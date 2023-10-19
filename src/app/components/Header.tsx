@@ -1,6 +1,8 @@
 import { FaSearch, FaSignOutAlt, FaHome, FaLayerGroup, FaCloudUploadAlt, FaEnvelope } from 'react-icons/fa';
 import '../globals.css';
-import Tooltip from '@mui/material/Tooltip';
+import Tooltip from '@mui/joy/Tooltip';
+import { Box } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 
 
@@ -18,7 +20,7 @@ function Header() {
               placeholder="Informações sobre o achado"
             />
             <button type="submit">
-              <FaSearch size={25}/>
+              <FaSearch size={28}/>
             </button>
           </form>
         </div>
@@ -28,37 +30,41 @@ function Header() {
           <div className="three"></div>
         </div>
         <div className="imgs-link">
-          <Tooltip title='Página principal'>
+        
+          <Tooltip title='Página principal' size='lg'>
           <figure>
-              <FaHome size={25} />
+             <Link to='/home'>
+              <FaHome size={28} style={{ color: 'white' }}/>
+              </Link>
           </figure> 
           </Tooltip>
-          <Tooltip title='Meus perdidos'>
+          <Tooltip title='Meus perdidos' size='lg'>
           <figure>
           
-              <FaLayerGroup size={25} />
+              <FaLayerGroup size={28} style={{ color: 'white' }} />
           </figure>
           </Tooltip>
-          <Tooltip title='Enviar item perdido'>
+          <Tooltip title='Enviar item perdido' size='lg'>
           <figure>
-
-              <FaCloudUploadAlt size={25} />
-            
+              <Link to='/upload'>  
+                  <FaCloudUploadAlt size={28} style={{ color: 'white' }} />
+              </Link>
+             
           </figure>
           </Tooltip>
-          <Tooltip title='Minhas mensagens'>
+          <Tooltip title='Minhas mensagens' size='lg'>
           <figure>
             
-              <FaEnvelope size={25} />
+              <FaEnvelope size={28} style={{ color: 'white' }} />
             
           </figure>
           </Tooltip>
           <figure>
             <form action="/logout" method="post">
-            <Tooltip title='Sair'>
+            <Tooltip title='Sair' size='lg'>
               <button type="submit">
              
-                <FaSignOutAlt size={25} />
+                <FaSignOutAlt size={28}  style={{ color: 'white' }}/>
             
               </button>
               </Tooltip>
