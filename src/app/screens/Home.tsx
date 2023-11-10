@@ -37,14 +37,23 @@ export default function Home () {
      return (
         <>
            
-                <Header/> 
-
-                  <main className={(response !== undefined && <CardList items={response.items}  />) ? 'full-sizeHome' :'full-sizeFalse'}>  
-                  { loading ? <div className="centerSpinner"><div className='spinner'></div></div> : (response !== undefined && <CardList items={response.items}  />) ? <CardList items={response.items}/> :<CardList items={[]}/> }
-                  </main>
-                
-                <Footer/>
-          
+    <div className="flex-col-home full-sizeHome">
+    <Header/> 
+    <main className={(response !== undefined && <CardList items={response.items}  />) ? 'full-size-grow' :'full-sizeFalse'}>
+     { loading ? 
+      <div className="full-sizeFalse">
+        <div className="centerSpinner">
+          <div className='spinner'></div>
+        </div>
+      </div> : 
+      (response !== undefined && <CardList items={response.items}  />) ? 
+      <CardList items={response.items}/> :
+      <CardList items={[]}/> 
+    }
+    </main> 
+    <Footer/>     
+    </div>
+             
         </>
      )
 }

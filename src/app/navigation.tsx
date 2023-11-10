@@ -11,6 +11,7 @@ import NotAuthorized from './screens/NotAuthorized';
 import ValidatedRetrieve from './screens/ValidatedRetrieve';
 import SuccessRetrieveAccount from './screens/SuccessRetrieveAccount';
 import Upload from './screens/Upload';
+import Forum from './screens/Forum';
 function Navigation() {
   return (
     <Router>
@@ -25,6 +26,7 @@ function Navigation() {
         <Route path='/success-retrieve' element={<SuccessRetrieveAccount/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/upload" element={<Upload/>}/>
+        <Route path='/forum/:id' element={<Forum/>}/>
       </Routes>
     </Router>
   );

@@ -45,6 +45,7 @@ function LoginPage() {
            console.log(response.status)
         }
       }).catch(error => {
+        console.log('error --->',error)
          if(error.response.data.error === 'Não autorizado'){
             localStorage.removeItem('token')
             localStorage.removeItem('id')

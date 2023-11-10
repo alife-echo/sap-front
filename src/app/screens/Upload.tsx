@@ -1,6 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { useJwt } from "react-jwt";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Request } from '../helpers/Request';
@@ -125,7 +124,7 @@ import '../globals.css';
       <textarea
         className="textArea styles-input"
         name="questionsValidated"
-        placeholder="Ex:Qual o nome atras abaixo do item ?&#10Qual o nome atras abaixo do item ?"
+        placeholder={`Ex:Qual o nome atras abaixo do item ?\nQual o nome atras abaixo do item ?`}
         value={questionsValidated}
         onChange={(e)=> setQuestionsValidated(e.target.value)}
       ></textarea>
@@ -133,7 +132,7 @@ import '../globals.css';
       <textarea
         className=" dif-heigh-text textArea styles-input"
         name="meetingLocation"
-        placeholder="Ex:Unifesspa campus 2 &#10 Bloco 5 &#10 Sala 24 &#10 Horario : 17:30"
+        placeholder={`Ex:Unifesspa campus 2 \n Bloco 5 \n Sala 24 \n Horario : 17:30`}
         value={meetingLocation}
         onChange={(e)=> setMeetingLocation(e.target.value)}
       ></textarea>

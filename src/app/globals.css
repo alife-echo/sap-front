@@ -36,10 +36,13 @@ body{
     width: 100%;
 }
 .full-sizeHome{
-    height: calc(100vh - 16.3rem);
-    width: 100%;
+    flex-grow: 1;
 }.full-sizeFalse{
     height: calc(100vh - 14.3rem);
+    width: 100%;
+}
+.fullSizeAdapterItems{
+    min-height: calc(100vh - 14.3rem);
     width: 100%;
 }
 .full-sizeUpload{
@@ -130,6 +133,10 @@ body{
     margin-top: 1rem;
     background-color: var(--backgroundFooter);
 }
+.sb-style-upload:active{
+    background-color: rgb(102, 187, 106);
+    transition: 300ms all ease;
+}
 .size-input-name-item{
     width: 30.9rem;
     height: 3.5rem;
@@ -180,9 +187,10 @@ footer{
     min-height: 7.5rem;
     max-height: 100%;
     width: 100%;
-    background-color: var(--backgroundFooter);
-    
+    background-color: var(--backgroundFooter);    
 }
+
+
 .mn{
     font-size: 3.8rem;
 }
@@ -278,6 +286,11 @@ header{
 .flex-col{
     display: flex;
     flex-direction: column;
+}
+.flex-col-home{
+    display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 .title-home  {
     font-size: 3.2rem;
@@ -397,9 +410,11 @@ header{
   }
   .card{
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
      margin: 1rem;
-     min-height: 38.72rem;
+     min-height: 40rem;
+     max-height: 40rem;
      width: 28rem;
      border-radius: 1rem;
      box-shadow: 0px 0px 17px -3px rgba(0,0,0,0.1);
@@ -446,6 +461,9 @@ header{
     font-weight: 500;
     margin: 1rem;
   }
+  .ct{
+    color: var(--colorTextCard);
+  }
   .text-3xl{
     font-size: 2.5rem;
   }
@@ -472,6 +490,11 @@ header{
     border: transparent;
     cursor: pointer;
   }
+.bt-card:hover{
+    background-color: rgb(102, 187, 106);
+    transition: 300ms all ease;
+}
+
 
   /*UPLOAD PAGE*/
 .upload-container{
@@ -506,13 +529,13 @@ header{
     font-weight: 600;
 }
 .m-1{
-    margin: 1rem;
+    margin: 0.1rem;
 }
 .mt-1{
     margin-top: 1rem;
 }
 .mt-1_5{
-    margin-top: 1.5rem;
+    margin-top: 0.68rem;
 }
 .input-textArea{
     width: 96%;
@@ -520,17 +543,28 @@ header{
 }
 .img-forum{
     width: 50rem;
-    height: 30rem;
+    height: 26.7rem;
     border-radius: 0.8rem;
 }
 .messages-container{
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
+.forum-container{
+    margin-bottom: 1rem;
+
+}
+
 .info-item{
     box-shadow: 0px 0px 17px -3px rgba(0,0,0,0.1);
     padding: 0rem 0rem 1rem 0rem;
     border-radius: 0.8rem;
     max-width: 50rem;
+    transition: ease 200ms;
+}
+.info-item:hover{
+    transition: ease 200ms;
+    cursor: pointer;
+    box-shadow: 0px 0px 17px -3px rgba(0,0,0,0.5);
 }
 .message{
     box-shadow: 0px 0px 17px -3px rgba(0,0,0,0.1);
