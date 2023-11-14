@@ -8,6 +8,7 @@ import { useJwt } from "react-jwt";
 import axios from 'axios'
 import { Request } from "../helpers/Request";
 import { CardListProps } from "@/types/CardListProps";
+import { useParams } from 'react-router-dom';
 
 
 
@@ -19,7 +20,7 @@ export default function Home () {
     const navigate:NavigateFunction = useNavigate()
 
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
-   
+    let idLocal = localStorage.getItem('id') ? localStorage.getItem('id') : ''
     useEffect(() => {
       setLoading(true)
         Request('get', `list-items?token=${token}`, '', token)
@@ -34,11 +35,12 @@ export default function Home () {
           setLoading(false)
         });
     }, [token, navigate])
+    console.log(idLocal)
      return (
         <>
            
     <div className="flex-col-home full-sizeHome">
-    <Header/> 
+    <Header userId={idLocal}/> 
     <main className={(response !== undefined && <CardList items={response.items}  />) ? 'full-size-grow' :'full-sizeFalse'}>
      { loading ? 
       <div className="full-sizeFalse">

@@ -7,5 +7,6 @@ interface CardProps {
       meetingLocation?: string;
       image?: string;
       userId?: string;
+      onCardResponseData?:any;
     };
   }

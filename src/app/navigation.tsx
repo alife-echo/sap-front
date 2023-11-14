@@ -12,6 +12,7 @@ import ValidatedRetrieve from './screens/ValidatedRetrieve';
 import SuccessRetrieveAccount from './screens/SuccessRetrieveAccount';
 import Upload from './screens/Upload';
 import Forum from './screens/Forum';
+import Messages from './screens/Messages';
 function Navigation() {
   return (
     <Router>
@@ -27,6 +28,7 @@ function Navigation() {
         <Route path="/home" element={<Home/>}/>
         <Route path="/upload" element={<Upload/>}/>
         <Route path='/forum/:id' element={<Forum/>}/>
+        <Route path='/messagesLocation/:userId' element={<Messages/>}/>
       </Routes>
     </Router>
   );

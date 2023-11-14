@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 
 
-function Header() {
+function Header({userId}:headerProps) {
   const [show,setShow] = useState<boolean>(false)
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [loading,setLoading] = useState<boolean>(false)
@@ -19,7 +19,7 @@ function Header() {
    const data = {
     contentInput
    }
-
+   console.log(userId)
    Request('get','filterCard',data).then((response)=>{
       if(response.cards){
          
@@ -78,9 +78,9 @@ function Header() {
           </Tooltip>
           <Tooltip title='Minhas mensagens' size='lg'>
           <figure>
-            
+            <Link to={`/messagesLocation/${userId}`}>
               <FaEnvelope size={28} style={{ color: 'white' }} />
-            
+           </Link>
           </figure>
           </Tooltip>
           <figure>
