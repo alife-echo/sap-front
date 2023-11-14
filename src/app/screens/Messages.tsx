@@ -5,10 +5,10 @@ import Header from '../components/Header';
 import { useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
 import { MessageProps } from "@/types/MessageLocationProps";
-
+import MessagesList from "../components/MessagesLocation";
 export const Messages = () => {
     const [loading,setLoading] = useState<boolean>(false)
-    const [messages,setMessages] = useState<MessageProps>()
+    const [messages,setMessages] = useState()
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
     let id = localStorage.getItem('id') ? localStorage.getItem('id') : ''
 
@@ -17,12 +17,12 @@ export const Messages = () => {
     useEffect(()=> {
         setLoading(true)
         Request('get',`messagesLocation/${id}`,'',token).then((response)=>{
-            console.log(response)
             if(response.ok){
-                console.log(response.ok)
+                setMessages(response.ok)
                 setLoading(false)
             }
         }).catch((error)=> {
+            setLoading(false)
             if(!token || error.response.data.error === 'Não autorizado'){
                 navigate('/not-authorized')
               }
@@ -31,11 +31,22 @@ export const Messages = () => {
     },[token,navigate])
    return (
     <>
-      <Header/>
-       <section className="flex flex-col">
-       <h1>meu zovo</h1>
-       </section>
-      <Footer/>
+       <div className="flex-col-home full-sizeHome">
+        <Header/>
+        <main className={(messages !== undefined && <MessagesList message={messages}/>) ? 'full-size-grow' :'full-sizeFalse'}>
+        { loading ? 
+            <div className="full-sizeFalse">
+                <div className="centerSpinner">
+                <div className='spinner'></div>
+                </div>
+            </div> : 
+            (messages !== undefined && <MessagesList message={messages}/>) ? 
+            <MessagesList message={messages}/> :
+            <MessagesList message={[]}/> 
+    }
+        </main>
+        <Footer/>
+      </div>
     </>
    )
 }

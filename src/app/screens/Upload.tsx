@@ -21,7 +21,7 @@ import '../globals.css';
     const [error,setError] = useState<boolean>(false)
     const fileInput = useRef<HTMLInputElement>(null);
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
-    let idUser = localStorage.getItem('id') || ''
+    let idLocal = localStorage.getItem('id') ? localStorage.getItem('id') : ''
 
     
     const handleFileSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,7 +96,7 @@ import '../globals.css';
 
   return (
     <>
-    <Header/>
+    <Header userId={idLocal}/>
     <main className='full-sizeUpload'>
     <section className="upload-container flex flex-col">
     {loading ? <div className="centerSpinner"> <div className='spinner'></div></div> :

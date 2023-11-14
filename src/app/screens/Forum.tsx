@@ -8,6 +8,7 @@ import BasicModal from '../components/BasicModal';
 import { CardListProps } from '@/types/CardListProps';
 import ItemResponse from '../components/CardResponse';
 import ItemMessageResponse from '../components/MessagesResponse';
+import { ItemResponseProps, ListItemResponseProps } from '@/types/ItemResponseProps';
 /*{`/forum${item.id}`} */
 export const Forum = () => {
     const {id} = useParams()
@@ -17,13 +18,13 @@ export const Forum = () => {
     const [message, setMessage] = useState<string>('');
     const [messagesResponse,setMessagesResponse] = useState()
     const [idItem,setId] = useState<string>()
-    const [image,setImage] = useState()
-    const [title,setTitle] = useState()
-    const [questions,setQuestions] = useState()
+    const [image,setImage] = useState<string>()
+    const [title,setTitle] = useState<string>()
+    const [questions,setQuestions] = useState<string>()
     const navigate:NavigateFunction = useNavigate()
     const [textResponse,setTextResponse] = useState<string>('')
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
-   
+    let idLocal = localStorage.getItem('id') ? localStorage.getItem('id') : ''
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=>{
         setLoading(true)
         e.preventDefault()
@@ -73,7 +74,7 @@ export const Forum = () => {
     return(
         <>
         <main>
-            <Header/>
+            <Header userId={idLocal}/> 
             <section className="flex mt-1_5 forum-container flex-col">
 
             {

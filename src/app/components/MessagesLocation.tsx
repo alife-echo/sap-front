@@ -15,7 +15,7 @@ const MessageMeetingLocation = ({message}:MessageProps) => {
   );
 };
 
-const messages = ({message}:MessagePropsList) => {
+const MessagesList = ({message}:MessagePropsList) => {
     if(message.length === 0){
         return (
           <>
@@ -37,4 +37,4 @@ const messages = ({message}:MessagePropsList) => {
         </>
     )
 }
-export default messages;
+export default MessagesList;
