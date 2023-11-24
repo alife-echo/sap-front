@@ -81,16 +81,25 @@ import '../globals.css';
           if(response.status){
              console.log(response.status)
           }
+          console.log(response)
         }).catch(error => {
+          console.log(error)
            if(error.response.data.error === 'Não autorizado'){
               localStorage.removeItem('token')
               localStorage.removeItem('id')
+              navigate('/not-authorized')
            }
            else{
             console.log(error)
            }
         })
-    }},[])
+    }
+    else{
+      localStorage.removeItem('token')
+      localStorage.removeItem('id')
+      navigate('/not-authorized')
+    }
+  },[])
 
     const handleCloseModal = () => setModalOpen(false);
 

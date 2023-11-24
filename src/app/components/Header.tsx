@@ -27,7 +27,10 @@ function Header({userId}:headerProps) {
    })
 
   }
-
+  const handleLogout = () => {
+    localStorage.removeItem('id')
+    localStorage.removeItem('token')
+  }
   return (
     <>
     <header className="on">
@@ -86,11 +89,12 @@ function Header({userId}:headerProps) {
           <figure>
             <form action="/logout" method="post">
             <Tooltip title='Sair' size='lg'>
-              <button type="submit">
-             
+            <Link to='/'>
+              <button type="submit" onClick={handleLogout}>
                 <FaSignOutAlt size={28}  style={{ color: 'white' }}/>
             
               </button>
+              </Link>
               </Tooltip>
             </form>
           </figure>

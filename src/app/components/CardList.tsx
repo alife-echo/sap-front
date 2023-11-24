@@ -14,7 +14,7 @@ function Card({ item }:CardProps) {
     return (
       <div className="card flip-vertical-left">
         <figure>
-          <img src={`data:image/png;base64,${item.image}`} alt={item.nameItem} />
+          <img src={item.image} alt={item.nameItem} />
         </figure>
         <h2 className="title-card text-xl">{displayText}</h2>
         <p className="p-card text-xs">{item.littleDescription}</p>

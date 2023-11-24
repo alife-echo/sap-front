@@ -39,6 +39,7 @@ export const Forum = () => {
             setLoading(false)
             setModalOpen(true);
             setTextResponse('');
+            window.location.reload()
 
           }
         }).catch((error)=> {
@@ -89,7 +90,7 @@ export const Forum = () => {
                     { (image && title && questions) !== undefined && (<>   
                         <div className="info-item">
                         <figure>
-                            <img className='img-forum' alt='' src={`data:image/png;base64,${image}`}/>
+                            <img className='img-forum' alt='' src={image}/>
                         </figure>
                         <h2 className="title-card title-rs text-xl">{title}</h2>
                         <div className="questions-container">

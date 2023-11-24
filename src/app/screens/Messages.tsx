@@ -21,6 +21,9 @@ export const Messages = () => {
                 setMessages(response.ok)
                 setLoading(false)
             }
+            if(!token || !id){
+                navigate('/not-authorized')
+            }
         }).catch((error)=> {
             setLoading(false)
             if(!token || error.response.data.error === 'Não autorizado'){
