@@ -5,11 +5,13 @@ import { Link, Navigate, NavigateFunction, NavigateProps, To } from 'react-route
 
 function Card({ item }:CardProps) {
     let displayText = item.nameItem || '';
-
+    let displayDescriptionText = item.littleDescription || ''
     if (displayText.length > 19) {
       displayText = displayText.substring(0, 19) + '...';
     }
-  
+    if(displayDescriptionText.length >= 75){
+        displayDescriptionText = displayDescriptionText.substring(0,75) + '...'
+    }
   
     return (
       <div className="card flip-vertical-left">
@@ -17,7 +19,7 @@ function Card({ item }:CardProps) {
           <img src={item.image} alt={item.nameItem} />
         </figure>
         <h2 className="title-card text-xl">{displayText}</h2>
-        <p className="p-card text-xs">{item.littleDescription}</p>
+        <p className="p-card text-xs">{displayDescriptionText}</p>
         <Link to={`/forum/${item.id}`} >
            <input className="bt-card" type="submit" value="É meu" />
         </Link>
