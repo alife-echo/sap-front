@@ -13,6 +13,7 @@ import SuccessRetrieveAccount from './screens/SuccessRetrieveAccount';
 import Upload from './screens/Upload';
 import Forum from './screens/Forum';
 import Messages from './screens/Messages';
+import ListItemsLostUser from './screens/ListItemLostUser';
 function Navigation() {
   return (
     <Router>
@@ -29,6 +30,7 @@ function Navigation() {
         <Route path="/upload" element={<Upload/>}/>
         <Route path='/forum/:id' element={<Forum/>}/>
         <Route path='/messagesLocation/:userId' element={<Messages/>}/>
+        <Route path='/userlostItems/:userId' element={<ListItemsLostUser/>} />
       </Routes>
     </Router>
   );

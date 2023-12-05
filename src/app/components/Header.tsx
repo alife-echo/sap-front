@@ -67,8 +67,9 @@ function Header({userId}:headerProps) {
           </Tooltip>
           <Tooltip title='Meus perdidos' size='lg'>
           <figure>
-          
+              <Link to={`/userlostItems/${userId}`}> 
               <FaLayerGroup size={28} style={{ color: 'white' }} />
+              </Link>
           </figure>
           </Tooltip>
           <Tooltip title='Enviar item perdido' size='lg'>

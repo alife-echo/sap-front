@@ -437,6 +437,7 @@ header{
     font-family: 'Inter';
     font-weight: 600;
     margin: 1rem;
+    word-wrap: break-word
   }
   .title_res_notify{
     color: var(--backgroundDefaultElements);
